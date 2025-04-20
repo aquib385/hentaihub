@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting To Your Link</title>
+    <style>
+        #countdown {
+            font-size: 48px;
+            font-weight: bold;
+            color: yellow;
+            display: inline;
+        }
+        .mixed-color {
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            margin-top: 20%;
+        }
+    </style>
+    <script type="text/javascript">
+       
+
+ document.addEventListener("DOMContentLoaded", function() {
+            // Check if the URL contains the 'HANTEI_HUB' parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const linkParam = urlParams.get('HANTEI_HUB');
+            const countdownElement = document.getElementById('countdown');
+
+            // If the HANTEI_HUB parameter exists, start the countdown and redirect
+            if (linkParam) {
+                let countdown = 2;
+                countdownElement.textContent = countdown;
+
+                const countdownInterval = setInterval(function() {
+                    countdown--;
+                    countdownElement.textContent = countdown;
+
+                    // When countdown reaches 0, redirect to link
+                    if (countdown <= 0) {
+                        clearInterval(countdownInterval);
+                        const telegramUrl = "https://telegram.me/HanteiHUB_BOT?start=" + linkParam;
+                        window.location.href = telegramUrl;
+                    }
+                }, 1000);
+            }
+        });
+
+    </script>
+</head>
+<body>
+    <h1>Redirecting To Your Link</h1>
+    <p><b>Join Our Anime Channel</b></p>
+    <a class="mixed-color" href="https://t.me/chrunchyrool">JOIN FROM HERE</a>
+    <p><b>Redirecting In <span class="mixed-color" id="countdown">2</span> Seconds...</b></p>
+</body>
+</html>
